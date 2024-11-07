@@ -349,8 +349,21 @@ baseOptionProcessors.autoCommands = function (cmds: string | undefined) {
     if (LatexCmds[cmd] === OperatorName) {
       throw '"' + cmd + '" is a built-in operator name';
     }
-    dict[cmd] = 1;
-    maxLength = max(maxLength, cmd.length);
+
+    if (cmd.includes(">"))
+    {
+      let parts = cmd.split(">");
+      if (parts.length != 2)
+        throw 'autocommand "' + cmd + '" cannot contain more than one >'
+
+      dict[parts[0]] = parts[1];
+      maxLength = max(maxLength, parts[1].length);
+    }
+    else
+    {
+      dict[cmd] = cmd;
+      maxLength = max(maxLength, cmd.length);
+    }
   }
   dict._maxLength = maxLength;
   return dict;
@@ -447,12 +460,13 @@ class Letter extends Variable {
           new Fragment(l, this).remove();
           cursor[L] = (l as MQNode)[L];
 
-          var cmd = LatexCmds[str];
+          let cmdStr = autoCmds[str]
+          var cmd = LatexCmds[cmdStr];
           var node;
           if (isMQNodeClass(cmd)) {
-            node = new (cmd as typeof TempSingleCharNode)(str); // TODO - How do we know that this class expects a single str input?
+            node = new (cmd as typeof TempSingleCharNode)(cmdStr); // TODO - How do we know that this class expects a single str input?
           } else {
-            node = cmd(str);
+            node = cmd(cmdStr);
           }
 
           return node.createLeftOf(cursor);
