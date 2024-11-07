@@ -5,12 +5,15 @@
   "license": "MPL-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mathquill/mathquill.git"
+    "url": "https://github.com/MattyMuir/mathquill.git"
   },
   "files": [
+    "Makefile",
+    ".prettierrc",
+    ".prettierignore",
+    "src/",
     "build/mathquill.{css,js,min.js}",
-    "build/fonts/Symbola.*",
-    "quickstart.html"
+    "build/fonts/Symbola.*"
   ],
   "devDependencies": {
     "@types/mocha": ">=5.2.7",
