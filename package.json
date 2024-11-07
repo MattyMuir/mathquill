@@ -8,9 +8,7 @@
     "url": "https://github.com/MattyMuir/mathquill.git"
   },
   "exports": {
-    ".": {
-      "import": "./build/mathquill.js"
-    },
+    "./mathquill.js": "./build/mathquill.js",
     "./mathquill.css": "./build/mathquill.css"
   },
   "files": [
