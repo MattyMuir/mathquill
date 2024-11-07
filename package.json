@@ -12,6 +12,7 @@
     ".prettierrc",
     ".prettierignore",
     "src/",
+    "script/",
     "build/mathquill.{css,js,min.js}",
     "build/fonts/Symbola.*"
   ],
