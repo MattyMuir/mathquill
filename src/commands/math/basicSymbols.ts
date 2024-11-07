@@ -333,7 +333,7 @@ Options.prototype.autoCommands = {
   _maxLength: 0
 };
 baseOptionProcessors.autoCommands = function (cmds: string | undefined) {
-  if (typeof cmds !== 'string' || !/^[a-z]+(?: [a-z]+)*$/i.test(cmds)) {
+  if (typeof cmds !== 'string' || !/^[a-z>]+(?: [a-z>]+)*$/i.test(cmds)) {
     throw '"' + cmds + '" not a space-delimited list of only letters';
   }
   var list = cmds.split(' ');
